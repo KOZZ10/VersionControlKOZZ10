@@ -70,7 +70,7 @@ namespace irf2_gyak_kozz10 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keresztnév.
+        ///   Looks up a localized string similar to Utónév.
         /// </summary>
         internal static string FirstName {
             get {
