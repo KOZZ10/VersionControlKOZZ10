@@ -77,5 +77,14 @@ namespace irf2_gyak_kozz10 {
                 return ResourceManager.GetString("Fullname", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fajlba iras.
+        /// </summary>
+        internal static string Write_to_file {
+            get {
+                return ResourceManager.GetString("Write to file", resourceCulture);
+            }
+        }
     }
 }
