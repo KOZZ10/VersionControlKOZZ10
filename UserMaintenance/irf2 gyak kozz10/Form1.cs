@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,9 @@ namespace irf2_gyak_kozz10
             InitializeComponent();
 
 
-            label1.Text = Resource1.LastName;
-            label2.Text = Resource1.FirstName;
+            label1.Text = Resource1.Fullname;
             button1.Text = Resource1.Add;
+            button2.Text = Resource1.Write_to_file;
 
             listBox1.DataSource = users;
             listBox1.ValueMember = "ID";
@@ -33,11 +34,30 @@ namespace irf2_gyak_kozz10
         {
             var u = new User()
             {
-                LastName = textBox1.Text,
-                FirstName = textBox2.Text
+                FullName = textBox1.Text,
+                
             };
 
             users.Add(u);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var sfd = new SaveFileDialog();
+            if (sfd.ShowDialog() != DialogResult.OK)
+                return;
+
+            using(var sw = new StreamWriter(sfd.FileName, false,Encoding.UTF8))
+            { 
+                foreach (var u in users)
+                { 
+                    sw.WriteLine(string.Format(
+                        "{0};{1}",
+                        u.ID,
+                        u.FullName));
+                }
+            }
+           
         }
     }
 }
