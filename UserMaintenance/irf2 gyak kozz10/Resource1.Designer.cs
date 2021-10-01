@@ -70,20 +70,11 @@ namespace irf2_gyak_kozz10 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keresztnév.
+        ///   Looks up a localized string similar to Teljes név.
         /// </summary>
-        internal static string FirstName {
+        internal static string Fullname {
             get {
-                return ResourceManager.GetString("FirstName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Vezetéknév.
-        /// </summary>
-        internal static string LastName {
-            get {
-                return ResourceManager.GetString("LastName", resourceCulture);
+                return ResourceManager.GetString("Fullname", resourceCulture);
             }
         }
     }
