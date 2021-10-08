@@ -12,14 +12,20 @@ namespace ExcelExport
 {
     public partial class Form1 : Form
     {
+        RealEstateEntities context = new RealEstateEntities();
+        List<Flat> lakasok;
         public Form1()
         {
             InitializeComponent();
+            LoadData();
+            dataGridView1.DataSource = lakasok;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+
+        public void LoadData()
         {
-
+            lakasok = context.Flats.ToList();
         }
+       
     }
 }
