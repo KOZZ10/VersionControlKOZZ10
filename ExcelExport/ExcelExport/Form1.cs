@@ -22,7 +22,7 @@ namespace ExcelExport
         Excel.Application xlApp;
         Excel.Workbook xlWB;
         Excel.Worksheet xlSheet;
-
+        string[] headers;
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +30,7 @@ namespace ExcelExport
             dataGridView1.DataSource = lakasok;
             CreateExcel();
             CreateTable();
+            FormatTable();
         }
 
 
@@ -66,7 +67,7 @@ namespace ExcelExport
         }
         private void CreateTable()
         {
-            string[] headers = new string[] 
+             headers = new string[]
             {
                  "Kód",
                  "Eladó",
@@ -131,6 +132,18 @@ namespace ExcelExport
             ExcelCoordinate += x.ToString();
 
             return ExcelCoordinate;
+        }
+
+        private void FormatTable()
+        {
+            Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
         }
     }
 }
