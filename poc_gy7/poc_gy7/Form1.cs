@@ -18,14 +18,27 @@ namespace poc_gy7
     public partial class Form1 : Form
     {
         BindingList<RateData> Rates = new BindingList<RateData>();
+        BindingList<string> currencies = new BindingList<string>();
         public Form1()
         {
             InitializeComponent();
+            comboBox1.DataSource = currencies;
+            MNBArfolyamServiceSoapClient mnbService = new MNBArfolyamServiceSoapClient();
+            GetCurrenciesRequestBody request = new GetCurrenciesRequestBody();
+            var response = mnbService.GetCurrencies(request);
+            string result = response.GetCurrenciesResult;
+            XmlDocument vxml = new XmlDocument();
+            vxml.LoadXml(result);
+            foreach (XmlElement item in vxml.DocumentElement.FirstChild.ChildNodes)
+            {
+                currencies.Add(item.InnerText);
+            }
             RefreshData();
         }
 
         private void RefreshData()
         {
+            if (comboBox1.SelectedItem == null) return;
             Rates.Clear();
             string xmlstring = Consume();
             LoadXml(xmlstring);
@@ -34,12 +47,12 @@ namespace poc_gy7
         }
 
         string  Consume()
-        {
+        {      
             MNBArfolyamServiceSoapClient mnbService = new MNBArfolyamServiceSoapClient();
             GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody();
-            request.currencyNames = "EUR";
-            request.endDate = "2020-01-01";
-            request.currencyNames = "2020-06-30";
+            request.currencyNames = comboBox1.SelectedItem.ToString(); //"EUR";
+            request.startDate = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+            request.endDate = dateTimePicker2.Value.ToString("yyyy-MM-dd");
             mnbService.GetExchangeRates(request);
             var response = mnbService.GetExchangeRates(request);
             string result = response.GetExchangeRatesResult;
@@ -82,10 +95,9 @@ namespace poc_gy7
             legend.Enabled = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void filterchanged(object sender, EventArgs e)
         {
             RefreshData();
-
         }
     }
 }

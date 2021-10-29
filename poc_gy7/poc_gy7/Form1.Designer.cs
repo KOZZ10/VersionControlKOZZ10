@@ -29,9 +29,9 @@ namespace poc_gy7
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.chartRateData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -40,7 +40,6 @@ namespace poc_gy7
             this.valuta = new System.Windows.Forms.Label();
             this.kezddate = new System.Windows.Forms.Label();
             this.enddate = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartRateData)).BeginInit();
             this.SuspendLayout();
@@ -57,16 +56,16 @@ namespace poc_gy7
             // 
             // chartRateData
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartRateData.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartRateData.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.chartRateData.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chartRateData.Legends.Add(legend4);
             this.chartRateData.Location = new System.Drawing.Point(488, 138);
             this.chartRateData.Name = "chartRateData";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartRateData.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chartRateData.Series.Add(series4);
             this.chartRateData.Size = new System.Drawing.Size(533, 300);
             this.chartRateData.TabIndex = 1;
             this.chartRateData.Text = "chart1";
@@ -90,11 +89,12 @@ namespace poc_gy7
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "EUR",
-            "USD"});
+            "UDS"});
             this.comboBox1.Location = new System.Drawing.Point(105, 12);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 4;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.filterchanged);
             // 
             // valuta
             // 
@@ -123,22 +123,11 @@ namespace poc_gy7
             this.enddate.TabIndex = 7;
             this.enddate.Text = "Záródátum";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(334, 94);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Számol";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1033, 450);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.enddate);
             this.Controls.Add(this.kezddate);
             this.Controls.Add(this.valuta);
@@ -166,7 +155,6 @@ namespace poc_gy7
         private System.Windows.Forms.Label valuta;
         private System.Windows.Forms.Label kezddate;
         private System.Windows.Forms.Label enddate;
-        private System.Windows.Forms.Button button1;
     }
 }
 
