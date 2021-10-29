@@ -68,11 +68,12 @@ namespace poc_gy7
                 RateData r = new RateData();
                 r.Date = DateTime.Parse(item.GetAttribute("date"));
                 XmlElement child = (XmlElement)item.FirstChild;
+                if (child == null) continue;   
                 r.Currency = child.GetAttribute("curr");
                 r.Value = decimal.Parse(child.InnerText);
                 int unit = int.Parse(child.GetAttribute("unit"));
                 if (unit!=0)
-                    r.Value = r.Value / unit;
+                r.Value = r.Value / unit;
                 Rates.Add(r);
             }
         }
