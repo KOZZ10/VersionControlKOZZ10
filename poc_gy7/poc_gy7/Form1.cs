@@ -21,11 +21,18 @@ namespace poc_gy7
         public Form1()
         {
             InitializeComponent();
+            RefreshData();
+        }
+
+        private void RefreshData()
+        {
+            Rates.Clear();
             string xmlstring = Consume();
             LoadXml(xmlstring);
             dataGridView1.DataSource = Rates;
             Charting();
-        }  
+        }
+
         string  Consume()
         {
             MNBArfolyamServiceSoapClient mnbService = new MNBArfolyamServiceSoapClient();
@@ -73,6 +80,12 @@ namespace poc_gy7
 
             var legend = chartRateData.Legends[0];
             legend.Enabled = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RefreshData();
+
         }
     }
 }
