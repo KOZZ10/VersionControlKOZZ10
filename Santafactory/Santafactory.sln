@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Santafactory", "Santafactory\Santafactory.csproj", "{EBE48DD4-720D-4CA2-BA7C-A3DBD1AB4964}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBE48DD4-720D-4CA2-BA7C-A3DBD1AB4964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBE48DD4-720D-4CA2-BA7C-A3DBD1AB4964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBE48DD4-720D-4CA2-BA7C-A3DBD1AB4964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBE48DD4-720D-4CA2-BA7C-A3DBD1AB4964}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {067448F1-9CCE-460B-92C2-EA9571ADACF2}
+	EndGlobalSection
+EndGlobal
