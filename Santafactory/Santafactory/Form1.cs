@@ -74,9 +74,22 @@ namespace Santafactory
 
         private void btn_ball_Click(object sender, EventArgs e)
         {
-            ToyFactory = new BallFactory();
+            ToyFactory = new BallFactory()
+            {
+                BallColor = btn_color.BackColor
+
+            };
+
         }
 
+        private void btn_present_Click(object sender, EventArgs e)
+        {
+            ToyFactory = new PresentFactory()
+            {
+                BoxColor = btn_boxcolor.BackColor,
+                RibbonColor = btn_ribboncolor.BackColor
+            };
+        }
         private void DisplayNext()
         {
             if (_nextToy != null)
@@ -98,5 +111,7 @@ namespace Santafactory
             button.BackColor = cd.Color;
             
         }
+
+        
     }
 }
