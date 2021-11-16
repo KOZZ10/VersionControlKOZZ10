@@ -1,4 +1,5 @@
 ﻿
+using Santafactory.Abstractions;
 using Santafactory.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,19 +15,20 @@ namespace Santafactory
 {
     public partial class mainPanel : Form
     {
-        List<Ball> _balls = new List<Ball>();
-        private BallFactory _ballFactory;
+        List<Toy> _toys = new List<Toy>();
 
-        public BallFactory BallFactory
+        private IToyFactory _toyFactory;
+
+        public IToyFactory ToyFactory
         {
-            get { return _ballFactory; }
-            set { _ballFactory = value; }
+            get { return _toyFactory; }
+            set { _toyFactory = value; }
         }
 
         public mainPanel()
         {
             InitializeComponent();
-            BallFactory = new BallFactory();
+            ToyFactory = new CarFactory();
 
             
 
@@ -34,19 +36,19 @@ namespace Santafactory
 
         private void createtimer_Tick(object sender, EventArgs e)
         {
-            var ball = BallFactory.Createnew();
-            _balls.Add(ball);
-            panel1.Controls.Add(ball);
-            ball.Left = -ball.Width;
+            var toy = ToyFactory.CreateNew();
+            _toys.Add(toy);
+            panel1.Controls.Add(toy);
+            toy.Left = -toy.Width;
         }
 
         private void conventorytimer_Tick(object sender, EventArgs e)
         {
             var lastPosition = 0;
 
-            foreach (var item in _balls)
+            foreach (var item in _toys)
             {
-                item.MoveBall();
+                item.MoveToy();
                 if (item.Left > lastPosition)
                 {
                     lastPosition = item.Left;
@@ -55,9 +57,9 @@ namespace Santafactory
 
             if (lastPosition>=1000)
             {
-                var oldestBall = _balls[0];
-                panel1.Controls.Remove(oldestBall);
-                _balls.Remove(oldestBall);
+                var oldestToy = _toys[0];
+                panel1.Controls.Remove(oldestToy);
+                _toys.Remove(oldestToy);
 
             }
         }

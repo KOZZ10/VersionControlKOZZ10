@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Santafactory.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -6,24 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Santafactory.Entities
 {
-    public class Ball :Label
+    public class Ball :Toy
     {
-        public Ball()
-        {
-            AutoSize = false;
-            Width = 50;
-            Height = Width;
-            Paint += Ball_Paint;
-        }
+       
 
-        private void Ball_Paint(object sender, PaintEventArgs e)
-        {
-            DrawImage(e.Graphics);
-        }
-
-        private void DrawImage(Graphics g)
+        protected override void DrawImage(Graphics g)
         {
             Brush ecset = new SolidBrush(Color.Blue);
             g.FillEllipse(
@@ -34,9 +25,6 @@ namespace Santafactory.Entities
                 Height);
         }
 
-        public void MoveBall()
-        {
-            Left++;
-        }
+       
     }
 }

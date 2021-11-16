@@ -1,18 +1,19 @@
 ﻿using Santafactory.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Santafactory.Entities
 {
-    public class BallFactory : IToyFactory
+    public class Car : Toy
     {
-
-        public Toy CreateNew()
+        protected override void DrawImage(Graphics g)
         {
-            return new Ball();
+            var image = Image.FromFile("Images/car.png");
+            g.DrawImage(image, 0, 0, Width, Height);
         }
     }
 }
