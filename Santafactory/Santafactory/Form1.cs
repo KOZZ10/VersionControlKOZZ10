@@ -16,13 +16,16 @@ namespace Santafactory
     public partial class mainPanel : Form
     {
         List<Toy> _toys = new List<Toy>();
-
+       private Toy _nextToy;
         private IToyFactory _toyFactory;
 
         public IToyFactory ToyFactory
         {
             get { return _toyFactory; }
-            set { _toyFactory = value; }
+            set { 
+                _toyFactory = value;
+                DisplayNext();
+            }
         }
 
         public mainPanel()
@@ -62,6 +65,38 @@ namespace Santafactory
                 _toys.Remove(oldestToy);
 
             }
+        }
+
+        private void btn_car_Click(object sender, EventArgs e)
+        {
+            ToyFactory = new CarFactory();
+        }
+
+        private void btn_ball_Click(object sender, EventArgs e)
+        {
+            ToyFactory = new BallFactory();
+        }
+
+        private void DisplayNext()
+        {
+            if (_nextToy != null)
+                this.Controls.Remove(_nextToy);
+            _nextToy = ToyFactory.CreateNew();
+            _nextToy.Top = lbl_next.Top ;
+            _nextToy.Left = lbl_next . Left + lbl_next.Width;
+            this.Controls.Add(_nextToy);
+        }
+
+        private void btn_color_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var cd = new ColorDialog();
+            cd.Color = button.BackColor;
+
+            if (cd.ShowDialog() != DialogResult.OK)
+                return;
+            button.BackColor = cd.Color;
+            
         }
     }
 }
