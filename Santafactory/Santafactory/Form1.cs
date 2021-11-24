@@ -16,7 +16,7 @@ namespace Santafactory
     public partial class mainPanel : Form
     {
         List<Toy> _toys = new List<Toy>();
-       private Toy _nextToy;
+        private Toy _nextToy;
         private IToyFactory _toyFactory;
 
         public IToyFactory ToyFactory
