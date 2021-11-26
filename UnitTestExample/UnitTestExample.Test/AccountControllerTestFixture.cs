@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Activities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using UnitTestExample.Controllers;
+
 
 namespace UnitTestExample.Test
 {
@@ -32,7 +34,7 @@ namespace UnitTestExample.Test
             TestCase("abcd1234", false),
             TestCase("ABCD1234", false),
             TestCase("abcdABCD", false),
-            TestCase("abcd12", false),
+            TestCase("ab1234", false),
             TestCase("abCD1234", true),
             TestCase("abCDEF1234", true),
         ]
@@ -60,6 +62,33 @@ namespace UnitTestExample.Test
             Assert.AreEqual(email, actualResult.Email);
             Assert.AreEqual(password, actualResult.Password);
             Assert.AreNotEqual(Guid.Empty, actualResult.ID);
+        }
+
+        [
+            Test,
+            TestCase("irf@uni-corvinus", "Abcd1234"),
+            TestCase("irf.uni-corvinus.hu", "Abcd1234"),
+            TestCase("irf@uni-corvinus.hu", "abcd1234"),
+            TestCase("irf@uni-corvinus.hu", "ABCD1234"),
+            TestCase("irf@uni-corvinus.hu", "abcdABCD"),
+            TestCase("irf@uni-corvinus.hu", "Ab1234"),
+        ]
+        public void TestRegisterValidateException(string email, string password)
+        {
+         
+            var accountController = new AccountController();
+
+            try
+            {
+                var actualResult = accountController.Register(email, password);
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOf<ValidationException>(ex);
+            }
+
+           
         }
     }
 }
